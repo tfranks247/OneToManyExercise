@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" th:href="@{/style.css}">
+    <style type="text/css">
+        .custom {
+            font-family: Courier;
+            color: blue;
+            font-size:15px;
+        }
+    </style>
+</head>
+<body>
+
+<!--<div th:replace="base :: navlinks"></div>-->
+
+<div class="jumbotron jumbotron-fluid" style="background-color: white">
+    <div class="container">
+        <h1 class="display-4 text-center">Movie Form</h1>
+        <p class="lead text-center">Fill out the form and submit!.</p>
+    </div>
+</div>
+
+<div class="container custom" id="planeBackground">
+    <div class="col-2"></div>
+    <div class="col-8 content">
+        <form action="#" th:action="@{/process}" th:object="${director}" method="post"
+              enctype="multipart/form-data" class="custom">
+            <input type="hidden" th:field="*{id}" />
+            <!--            <input type="hidden" th:field="*{image}" />-->
+            <input type="hidden" th:field="*{id}" />
+            <span th:if="${#fields.hasErrors('id')}"
+                  th:errors="*{id}"></span>
+            Name :<input class="form-control" type="text" th:field="*{name}"/>
+            <span th:if="${#fields.hasErrors('name')}"
+                  th:errors="*{name}"></span><br />
+            Genre :<input class="form-control" type="text" th:field="*{genre}" />
+            <span th:if="${#fields.hasErrors('genre')}"
+                  th:errors="*{genre}"></span><br />
+            Movie: <select></select>
+            Image :<input type="file" name="file"/>
+            <br />
+            <input type="submit" value="Submit" />
+        </form>
+
+    </div>
+    <div class="col-2"></div>
+    <!--    <div class="footer text-center">Don't Be Afraid to Fly</div>-->
+
+</div>
+
+</body>
+</html>
